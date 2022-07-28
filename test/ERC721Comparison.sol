@@ -11,31 +11,20 @@ import "src/Opti/Opti.sol";
 
 
 contract ContractTest is Test {
-    // function setUp() public {}
-
-    // function testExample() public {
-    //     assertTrue(true);
-    // }
 
     address ALGO_TWO = 0x00000444e5a1a667663b0ADfD853E8Efa0470698;
     address RECEIVER = 0xEf0182dc0574cd5874494a120750FD222FdB909a;
 
-    // no native batch transfer
-    // native batch mint
     function testTinyERC721() public {
-        // sets both the msg.sender and txn.origin to ALGO_TWO
         vm.startPrank(ALGO_TWO, ALGO_TWO);
 
         Tajigen tiny = new Tajigen();
-        // maxPerTransaction, unitPrice
         tiny.setPublicSaleConfig(100, 0);
         tiny.setPublicSaleStatus(true);
         tiny.publicMint(100);
         tiny.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
-    // no native batch transfer
-    // no native batch mint
     function testSolmate() public {
         vm.startPrank(ALGO_TWO, ALGO_TWO);
 
@@ -44,8 +33,6 @@ contract ContractTest is Test {
         solmate.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
-    // no native batch transfer
-    // no native batch mint
     function testOZ() public {
         vm.startPrank(ALGO_TWO, ALGO_TWO);
 
