@@ -7,3 +7,6 @@
 [submodule "lib/ERC721A"]
 	path = lib/ERC721A
 	url = https://github.com/chiru-labs/ERC721A
+[submodule "lib/optimint"]
+	path = lib/optimint
+	url = https://github.com/nftyte/optimint
