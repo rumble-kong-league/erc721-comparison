@@ -7,6 +7,7 @@ import "src/TinyERC721/Tajigen.sol";
 import "src/Solmate/Solmate.sol";
 import "src/OZ/OZ.sol";
 import "src/ERC721A/Azuki.sol";
+import "src/Opti/Opti.sol";
 
 
 contract ContractTest is Test {
@@ -59,6 +60,14 @@ contract ContractTest is Test {
         Azuki azuki = new Azuki("Azuki", "AZK");
         azuki.mint(ALGO_TWO, 100);
         azuki.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
+    }
+
+    function testOptimint() public {
+        vm.startPrank(ALGO_TWO, ALGO_TWO);
+
+        Opti opti = new Opti();
+        opti.mint(100);
+        opti.safeTransferFrom(ALGO_TWO, RECEIVER, 95204755769232871868997827831218916186036224);
     }
 
 }
