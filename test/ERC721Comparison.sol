@@ -5,6 +5,7 @@ import "forge-std/Test.sol";
 
 import "src/TinyERC721/Tajigen.sol";
 import "src/Solmate/Solmate.sol";
+import "src/OZ/OZ.sol";
 
 
 contract ContractTest is Test {
@@ -47,6 +48,20 @@ contract ContractTest is Test {
 
         // gas fee to transfer 1 token
         solmate.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
+    }
+
+    // no native batch transfer
+    // no native batch mint
+    function testOZ() public {
+        vm.startPrank(ALGO_TWO, ALGO_TWO);
+
+        OZ oz = new OZ();
+
+        // gas fee to mint 100 tokens
+        oz.mint(ALGO_TWO, 100);
+
+        // gas fee to transfer 1 token
+        oz.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
 }
