@@ -6,6 +6,7 @@ import "forge-std/Test.sol";
 import "src/TinyERC721/Tajigen.sol";
 import "src/Solmate/Solmate.sol";
 import "src/OZ/OZ.sol";
+import "src/ERC721A/Azuki.sol";
 
 
 contract ContractTest is Test {
@@ -28,11 +29,7 @@ contract ContractTest is Test {
         // maxPerTransaction, unitPrice
         tiny.setPublicSaleConfig(100, 0);
         tiny.setPublicSaleStatus(true);
-
-        // gas fee to mint 100 tokens
         tiny.publicMint(100);
-
-        // gas fee to transfer 1 token
         tiny.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
@@ -42,11 +39,7 @@ contract ContractTest is Test {
         vm.startPrank(ALGO_TWO, ALGO_TWO);
 
         Solmate solmate = new Solmate();
-
-        // gas fee to mint 100 tokens
         solmate.mint(ALGO_TWO, 100);
-
-        // gas fee to transfer 1 token
         solmate.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
@@ -56,12 +49,16 @@ contract ContractTest is Test {
         vm.startPrank(ALGO_TWO, ALGO_TWO);
 
         OZ oz = new OZ();
-
-        // gas fee to mint 100 tokens
         oz.mint(ALGO_TWO, 100);
-
-        // gas fee to transfer 1 token
         oz.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
+    }
+
+    function testERC721A() public {
+        vm.startPrank(ALGO_TWO, ALGO_TWO);
+
+        Azuki azuki = new Azuki("Azuki", "AZK");
+        azuki.mint(ALGO_TWO, 100);
+        azuki.safeTransferFrom(ALGO_TWO, RECEIVER, 1);
     }
 
 }
